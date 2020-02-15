@@ -38,6 +38,10 @@ func (c *nsContext) ReleaseCurrent() {
 	C.gio_headless_clearCurrentContext(c.ctx)
 }
 
+func (c *nsContext) Backend() (gpu.Backend, error) {
+	return gl.NewBackend(c.c)
+}
+
 func (c *nsContext) Functions() *glimpl.Functions {
 	return c.c
 }

@@ -40,8 +40,8 @@ func newContext(w *window) (*context, error) {
 	return c, nil
 }
 
-func (c *context) Functions() *glimpl.Functions {
-	return c.c
+func (c *context) Backend() (gpu.Backend, error) {
+	return gl.NewBackend(c.f)
 }
 
 func (c *context) Release() {

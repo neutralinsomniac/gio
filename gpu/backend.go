@@ -23,7 +23,7 @@ type Backend interface {
 	NilTexture() Texture
 	NewFramebuffer() Framebuffer
 	NewBuffer(typ BufferType, data []byte) Buffer
-	NewProgram(vertexShader, fragmentShader string, attribMap []string) (Program, error)
+	NewProgram(vertexShader, fragmentShader ShaderSources, attribMap []string) (Program, error)
 	SetupVertexArray(slot int, size int, dataType DataType, stride, offset int)
 
 	DepthFunc(f DepthFunc)
@@ -37,6 +37,11 @@ type Backend interface {
 	SetDepthTest(enable bool)
 	DepthMask(mask bool)
 	BlendFunc(sfactor, dfactor BlendFactor)
+}
+
+type ShaderSources struct {
+	GLES2 string
+	HLSL  []byte
 }
 
 type BlendFactor uint8

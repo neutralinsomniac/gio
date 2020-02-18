@@ -13,7 +13,7 @@ type glContext struct {
 
 func init() {
 	backends = append(backends, backend{
-		priority: 1,
+		priority: 2,
 		initializer: func(w *window) (Context, error) {
 			disp := egl.NativeDisplayType(w.HDC())
 			ctx, err := egl.NewContext(disp)

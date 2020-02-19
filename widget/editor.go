@@ -78,6 +78,10 @@ type SubmitEvent struct {
 	Text string
 }
 
+type KeyEvent struct {
+	Key key.Event
+}
+
 type line struct {
 	offset f32.Point
 	clip   op.CallOp
@@ -171,6 +175,10 @@ func (e *Editor) processKey(gtx *layout.Context) {
 					})
 					return
 				}
+			} else {
+				e.events = append(e.events, KeyEvent{
+					Key: ke,
+				})
 			}
 			if e.command(ke) {
 				e.caretScroll = true
@@ -673,3 +681,4 @@ func (e *Editor) NumLines() int {
 
 func (s ChangeEvent) isEditorEvent() {}
 func (s SubmitEvent) isEditorEvent() {}
+func (s KeyEvent) isEditorEvent()    {}
